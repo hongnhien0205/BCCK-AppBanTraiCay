@@ -103,22 +103,19 @@ function Cart() {
       const cartRef = firestore().collection("carts").doc(userId);
   
       try {
-        // Lấy dữ liệu giỏ hàng hiện tại
+        
         const cartSnapshot = await cartRef.get();
   
         if (cartSnapshot.exists) {
           const currentCartData = cartSnapshot.data();
-  
-          // Cập nhật số lượng và giá mới cho sản phẩm trong giỏ hàng
+          
           if (currentCartData[productId]) {
             currentCartData[productId].quantity = newQuantity;
             currentCartData[productId].price = newPrice;
           }
   
-          // Cập nhật giỏ hàng trên Firestore
           await cartRef.set(currentCartData);
-  
-          // Tải lại dữ liệu giỏ hàng
+
           loadCartData();
         }
       } catch (error) {
@@ -129,24 +126,7 @@ function Cart() {
   
   return (
     <View style={{ flex: 1, backgroundColor: "rgba(211,211,211,0.2)" }}>
-      {/* <ScrollView contentContainerStyle={styles.container}>
-        {cartData.map((cartItem, index) => (
-          <ItemCart
-            key={index}
-            productId={cartItem.id}
-            namePro={cartItem.name}
-            nameShop={cartItem.shop}
-            category={cartItem.category}
-            price={cartItem.price}
-            proquantity={cartItem.quantity}
-            srcImg={cartItem.img}
-            isChecked={checkedItems[index]}
-            onRemove={()=>removeItem(cartItem.id)}
-            updateCartItem={updateCartItem}
-            onToggleCheck={() => toggleCheckItem(index)}
-          />
-        ))}
-      </ScrollView> */}
+      {}
       <FlatList
   data={cartData}
   keyExtractor={(item) => item.id.toString()}
