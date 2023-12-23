@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953068147512",
+    "project_id": "hoaquashop-6db34",
+    "storage_bucket": "hoaquashop-6db34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953068147512:android:9138aab20ca547d65627cd",
+        "android_client_info": {
+          "package_name": "com.shophoaban"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAbxcUtIMsUfZPGVNAEj6ENBvFet0mKXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
