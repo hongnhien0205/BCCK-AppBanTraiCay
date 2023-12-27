@@ -45,53 +45,40 @@ const updateQuantityAndPrice = (newQuantity) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.wrapHeader}>
-        <View style={{flexDirection:'row'}}>
-          <Checkbox
-            status={isChecked ? "checked" : "unchecked"}
-            onPress={() => {
-              onToggleCheck();
-            }}
-          />
-          <Text style={styles.txtName}>{nameShop}</Text>
-        </View>
-        <TouchableOpacity onPress={onRemove}>
-            <Text style={{fontSize:20,color:'red',marginRight:10}}>Xóa</Text>
-        </TouchableOpacity>
-      </View>
+      
       <View style={styles.wrapProduct}>
-        <Checkbox
-          status={isChecked ? "checked" : "unchecked"}
-          onPress={() => {
-            onToggleCheck();
-          }}
-        />
+       
         <Image source={{ uri: srcImg }} style={styles.img} />
-        <View>
-          <Text style={styles.name}>{namePro}</Text>
-          <Text style={styles.price}>{numberWithCommas(totalPrice)}</Text>
-
-          <View style={styles.wrapBtn}>
-            <TouchableOpacity
-              style={styles.btnMP}
-              onPress={() => {
-                if (quantity > 1) {
-                  updateQuantityAndPrice(quantity - 1);
-                }
-              }}
-            >
-              <Icon name="minus" size={25} color="#000" style={styles.icon} />
-            </TouchableOpacity>
-            <Text style={styles.quantity}>{quantity}</Text>
-            <TouchableOpacity
-              style={styles.btnMP}
-              onPress={() => {
-                updateQuantityAndPrice(quantity + 1);
-              }}
-            >
-              <Icon name="plus" size={25} color="#000" style={styles.icon} />
-            </TouchableOpacity>
+        <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+          <View style={{width:190}}>
+            <Text style={styles.name}>{namePro}</Text>
+            <Text style={styles.price}>{numberWithCommas(totalPrice)}</Text>
+  
+            <View style={styles.wrapBtn}>
+              <TouchableOpacity
+                style={styles.btnMP}
+                onPress={() => {
+                  if (quantity > 1) {
+                    updateQuantityAndPrice(quantity - 1);
+                  }
+                }}
+              >
+                <Icon name="minus" size={25} color="#000" style={styles.icon} />
+              </TouchableOpacity>
+              <Text style={styles.quantity}>{quantity}</Text>
+              <TouchableOpacity
+                style={styles.btnMP}
+                onPress={() => {
+                  updateQuantityAndPrice(quantity + 1);
+                }}
+              >
+                <Icon name="plus" size={25} color="#000" style={styles.icon} />
+              </TouchableOpacity>
+            </View>
           </View>
+          <TouchableOpacity onPress={onRemove} style={{}}>
+            <Text style={{fontSize:20,color:'red',marginRight:30}}>Xóa</Text>
+        </TouchableOpacity> 
         </View>
       </View>
     </View>
@@ -144,6 +131,7 @@ const styles = StyleSheet.create({
     btnMP:{
         height:30,
         width:30,
+        borderWidth:1,
         borderColor:'#ccc',
         alignSelf:'center'
     },

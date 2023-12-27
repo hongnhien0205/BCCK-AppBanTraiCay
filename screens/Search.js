@@ -1,81 +1,78 @@
-import React, {useState,useEffect} from 'react';
-import {View,TouchableOpacity,TextInput,Image,Text,FlatList} from 'react-native'
-import { SearchComponent,SearchHeader } from '../components';
-import { useNavigation } from '@react-navigation/native';
+
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, FlatList, Text, Image, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-
-function Search() {
-  const navigation = useNavigation()
-  const [searchKeyword, setSearchKeyword] = useState('');
+import { useNavigation } from '@react-navigation/native';
+const Search = () => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
-
-  const fetchSearchResults = async () => {
-    try {
-      if (searchKeyword) {
-        const querySnapshot = await firestore()
-          .collection('products')
-          .where('productName', '>=', searchKeyword.toUpperCase())
-          .orderBy('productName')
+  const navigation = useNavigation()
+  useEffect(() => {
+    const searchProducts = async () => {
+      try {
+        const productsRef = firestore().collection('products');
+        const snapshot = await productsRef
+          .where('productName', '>=', searchQuery)
           .get();
   
-        const results = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const results = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setSearchResults(results);
-      } else {
-        setSearchResults([]);
+      } catch (error) {
+        console.error('Error searching products:', error);
       }
-    } catch (error) {
-      console.error('Error fetching data: ', error);
-    }
-  };
+    };
+  
+    searchProducts();
+  }, [searchQuery]);
+  
+  
+  
 
-  useEffect(() => {
-    fetchSearchResults();
-  }, [searchKeyword]);
+  const handleSearch = async () => {
+    // Gọi hàm searchProducts khi người dùng bấm nút tìm kiếm
+    await searchProducts();
+    navigation.navigate('SearchResult', { searchQuery });
+    console.log(searchQuery);
+  };
+  
 
   const SearchResultItem = ({ item }) => (
     <TouchableOpacity
       style={{ height: 50, justifyContent: 'center', paddingLeft: 20 }}
       onPress={() => {
         console.log('Selected:', item.category);
-        navigation.navigate('Categories', { cate: item.category });
+        navigation.navigate('SearchResult',{productName:item.productName,price:item.price,imageUrl150:item.imageUrl150})
+        // navigation.navigate('Categories', { cate: item.category });
       }}
     >
       <View>
         <Text style={{ fontSize: 16, color: '#000' }}>{item.productName}</Text>
-        {}
       </View>
     </TouchableOpacity>
   );
 
- 
-    return ( 
-        <View style={{backgroundColor:'#fff',flex:1}}>
-            <SearchHeader searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword}/>
-            {}
-            <View style={{flex:1,marginTop:5}}>
-            {searchKeyword && (
-          <FlatList
-            data={searchResults}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <SearchResultItem item={item} />}
-          />
-
-        )}
-          {searchKeyword&&(
-            <TouchableOpacity style={{ height: 50, justifyContent: 'center' }}>
-            <Text style={{ marginLeft: 20, fontSize: 16, textAlign: 'center' }}>
-              Hiển thị nhiều hơn
-            </Text>
-          </TouchableOpacity>
-          )}
-            </View>
-           
-            <View>
-
-            </View>
-        </View>
-     );
-}
+  return (
+    <View>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginRight: 10, marginTop: 10, marginLeft: 10 }}>
+        <TextInput
+          style={{ flex: 1, borderWidth: 1, borderColor: '#ccc' }}
+          placeholder="Search for products"
+          value={searchQuery}
+          onChangeText={(text) => setSearchQuery(text)}
+        />
+        <TouchableOpacity onPress={()=>{handleSearch
+          }
+        }>
+          <Image source={require('../assets/searchicon.png')} style={{ height: 30, width: 30 }} />
+        </TouchableOpacity>
+      </View>
+      <FlatList
+        data={searchResults}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <SearchResultItem item={item} />}
+      />
+    </View>
+  );
+};
 
 export default Search;

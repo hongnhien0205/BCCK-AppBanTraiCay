@@ -10,6 +10,7 @@ import auth from "@react-native-firebase/auth";
 
 function Setting() {
     const [{ userLogin }] = useMyContextController();
+    const { email,name,phoneNumber,address } = userLogin;
     const navigation = useNavigation()
 
 
@@ -31,47 +32,26 @@ function Setting() {
           console.error('Đăng xuất thất bại:', error.message);
         }
       };
-      const { email,name,phoneNumber,address } = userLogin;
     return ( 
-        <ScrollView style={{flex:1,backgroundColor:'#fff'}}>
+        <View style={{flex:1,backgroundColor:'#fff'}}>
             {/* image */}
-            <View style={{flexDirection:'row', alignItems:'center',height:200,backgroundColor:primaryColor}}>
-                <Image source={require('../assets/user.png')} style={{height:100,width:100,tintColor:'#fff'}}/>
-                <View style={{width:300}}>
-                    <Text style={{fontSize:20,fontWeight:'bold',color:'#fff'}}>{email}</Text>
-                   
-                </View>
-            </View>
-            {/* dif */}
-            <View>
-                {/* history */}
-               <View>
-
-                <Text style={{fontSize:20,fontWeight:'bold', color:'#000'}}>Thông tin của bạn</Text>
-                <View >
-                  <Text style={{fontSize:16,marginTop:20,marginLeft:10}}>Họ và tên: {name}</Text>
-                  <Divider/>
-                  <Text style={{fontSize:16,marginTop:20,marginLeft:10}}>Số điện thoại: {phoneNumber}</Text>
-                  <Divider/>
-                  <Text style={{fontSize:16,marginTop:20,marginLeft:10}}>Email: {email}</Text>
-                  <Divider/>
-                  <Text style={{fontSize:16,marginTop:20,marginLeft:10}}>Địa chỉ: {address}</Text>
-                  <Divider/>
-                </View>
-                    {/* LOG OUT */}
+            <View style={{ alignItems:'center',height:200}}>
+                <Image source={require('../assets/category/user.png')} style={{height:100,width:100,tintColor:'#000'}}/>
+                    <Text style={{fontSize:20,fontWeight:'bold',color:'#000'}}>{email}</Text>
                     <TouchableOpacity 
                     style={{flexDirection:'row',justifyContent:'space-between',paddingTop:10,paddingBottom:10}}
                     onPress={handleLogout}>
-                        <View style={{flexDirection:'row',alignItems:'center'}}>
-                            <Icon name='arrow-circle-left' size={25} color={primaryColor}/>
-                            <Text style={{marginLeft:10,fontSize:16}}>Đăng xuất</Text>
-                        </View>
+                        <TouchableOpacity style={{
+                          flexDirection:'row',alignItems:'center',backgroundColor:primaryColor,
+                          flex:1,marginLeft:10,marginRight:10,padding:5,borderRadius:10,justifyContent:'center'}}>
+                            <Text style={{marginLeft:10,fontSize:20,color:'#fff'}}>Đăng xuất</Text>
+                        </TouchableOpacity>
                     </TouchableOpacity>
-                    <Divider/>
                     
-                </View>
             </View>
-        </ScrollView>
+            {/* dif */}
+          
+        </View>
      );
 }
 

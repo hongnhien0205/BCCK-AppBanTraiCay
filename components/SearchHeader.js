@@ -8,7 +8,6 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
     const navigation = useNavigation();
 
     return (
-        <View>
             <View
                 style={{
                     flexDirection: 'row',
@@ -16,7 +15,7 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
                     backgroundColor: 'rgba(255,255,240,0.1)',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    backgroundColor: primaryColor
+                    
                 }}
             >
                 <TouchableOpacity
@@ -32,7 +31,7 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
                     onPress={() => navigation.goBack()}
                 >
                     <Icon
-                        name='arrow-left' size={30} color='#fff'
+                        name='arrow-left' size={30} color='#000'
                     />
                 </TouchableOpacity>
                 <View style={{
@@ -43,7 +42,6 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
                     alignItems: 'center',
                     borderWidth: 1,
                     borderColor: '#ccc',
-                    borderRadius:30,
                     backgroundColor:'#fff'
                 }}>
                     <TextInput
@@ -52,7 +50,6 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
                             flex: 1,
                             backgroundColor: '#fff',
                             paddingLeft: 20,
-                            borderRadius:30
 
                         }}
                         value={searchKeyword}
@@ -63,7 +60,6 @@ function SearchHeader({searchKeyword,setSearchKeyword}) {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
     );
 }
 

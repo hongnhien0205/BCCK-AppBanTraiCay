@@ -47,7 +47,7 @@ function Signup() {
     return ( 
         <View style={styles.container}>
 
-            <Image source={require('../assets/Tech.png')} style={styles.img}/>
+            <Image source={{uri: 'https://nhainonline.vn/wp-content/uploads/2023/03/goi-y-nhung-logo-hoa-qua-sach.png'}} style={styles.img}/>
             <Text style={styles.title}>Create new account</Text>
 
         <Formik 

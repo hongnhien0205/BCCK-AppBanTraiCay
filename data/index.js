@@ -2,12 +2,12 @@
 const Bo ={
     id:1,
     productName:'Bơ đà lạt',
-    price:2490000,
+    price:300000,
     imageUrl150:'Bo150.jpg',
     imageUrl400:'Bo400.jpg',
     rating:4.0, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:' Trọng lượng trung bình là 140 - 340gr , nhiều thịt và mùi thơm đặc trưng. Thịt bơ Xáp và béo với hạt rất nhỏ, có lớp bơ thơm dẻo, béo bùi, ko đắng 10 trái như 1, cực ngon và bổ',
     sold:15,
     quantity:21,
     category:'MuaXuan'
@@ -17,12 +17,12 @@ const Bo ={
 const Cam ={
     id:2,
     productName:'Cam',
-    price:1890000,
+    price:180000,
     imageUrl150:'Cam150.jpg',
     imageUrl400:'Cam400.jpg',
     rating:3.8, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:'Đặc Điểm: Vỏ màu vàng, mọng nước, ngọt đậm, ít chua. Tiêu chuẩn an toàn, được chọn lọc những trái ngon và chuẩn nhất.Cam Xoàn Tiền Giang (1Kg) có đặc điểm rất dễ nhận biết như quả tròn, vỏ mỏng, ruột vàng, ít hạt, mọng nước, có mùi thơm nhẹ và vị ngọt thanh mát. Nhờ vị ngọt đặc biệt, cam xoàn có thể ăn trực tiếp và được rất nhiều người yêu thích.',
     sold:10,
     quantity:28,
     category:'MuaHe'
@@ -33,7 +33,7 @@ const Cam ={
 const ChomChom ={
     id:3,
     productName:'Chôm Chôm',
-    price:300000,
+    price:80000,
     imageUrl150:'Chom150.jpg',
     imageUrl400:'Chom400.jpg',
     rating:3.0, // <=5
@@ -49,7 +49,7 @@ const ChomChom ={
 const Chuoi ={
     id:4,
     productName:'Chuối',
-    price:1490000,
+    price:100000,
     imageUrl150:'Chuoi150.jpg',
     imageUrl400:'Chuoi400.jpg',
     rating:4.5, // <=5
@@ -65,7 +65,7 @@ const Chuoi ={
 const DauTay ={
     id:5,
     productName:'Dâu Tây',
-    price:2300000,
+    price:230000,
     imageUrl150:'DauTay150.jpg',
     imageUrl400:'DauTay400.jpg',
     rating:3.9, // <=5
@@ -81,7 +81,7 @@ const DauTay ={
 const DauHau ={
     id:6,
     productName:'Dưa Hấu',
-    price:900000,
+    price:100000,
     imageUrl150:'DuaHau150.jpg',
     imageUrl400:'DuaHau400.jpg',
     rating:4.5, // <=5
@@ -113,12 +113,12 @@ const Le ={
 const MangCuc ={
     id:8,
     productName:'Măng cục',
-    price:1100000,
+    price:70000,
     imageUrl150:'MangCuc150.jpg',
     imageUrl400:'MangCuc400.jpg',
     rating:4.1, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:'Măng cụt là một loại trái cây phổ biến ở Đông Nam Á  nói chung và ở Việt Nam nói riêng. Ngoài hương vị thơm ngon, ngọt, loại quả này có nhiều dưỡng chất, vitamin tốt cho sức khỏe.',
     sold:15,
     quantity:30,
     category:'MuaHe'
@@ -129,7 +129,7 @@ const MangCuc ={
 const Mit ={
     id:9,
     productName:'Mít',
-    price:799000,
+    price:50000,
     imageUrl150:'Mit150.jpg',
     imageUrl400:'Mit400.jpg',
     rating:3.1, // <=5
@@ -145,12 +145,12 @@ const Mit ={
 const Nho ={
     id:10,
     productName:'Nho',
-    price:990000,
+    price:300000,
     imageUrl150:'Nho150.jpg',
     imageUrl400:'Nho400.jpg',
     rating:3.7, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:'Nho xanh được nhiều khách hang yêu quý bỏi độ giòn rụm Thịt chắc, vị ngọt thanh mát, thơm đặc trưng, Chùm nho đẹp, trái đồng đều, màu sắc tươi sáng, Có lớp phấn trắng tự nhiên bảo vệ quả Cuống luôn tươi xanh như vừa được hái trên cây',
     sold:23,
     quantity:33,
     category:'MuaDong'
@@ -161,7 +161,7 @@ const Nho ={
 const Oi ={
     id:11,
     productName:'Ổi',
-    price:26500000,
+    price:70000,
     imageUrl150:'Oi150.jpg',
     imageUrl400:'Oi400.jpg',
     rating:4.3, // <=5
@@ -177,7 +177,7 @@ const Oi ={
 const SauRieng ={
     id:12,
     productName:'Sầu Riêng',
-    price:21900000,
+    price:380000,
     imageUrl150:'SauRieng150.jpg',
     imageUrl400:'SauRieng400.jpg',
     rating:3.5, // <=5
@@ -193,12 +193,12 @@ const SauRieng ={
 const Tao ={
     id:13,
     productName:'Táo',
-    price:17900000,
+    price:170000,
     imageUrl150:'Tao150.jpg',
     imageUrl400:'Tao400.jpg',
     rating:3.8, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:'Táo Envy có các sọc màu đỏ ruby ở vỏ với màu xanh lá cây nhạt ở gần cuống, hình dáng to và tròn, có trọng lượng dao động từ khoảng 220g (size 80) đến 400g (size 24) mỗi quả. Thịt của táo envy giòn, ngọt, rất thơm và nhiều nước đã trở thành giống táo cao cấp nhất cho đến hiện tại.',
     sold:6,
     quantity:11,
     category:'MuaHe'
@@ -209,7 +209,7 @@ const Tao ={
 const ThanhLong ={
     id:14,
     productName:'Thanh Long',
-    price:19900000,
+    price:70000,
     imageUrl150:'ThanhLong150.jpg',
     imageUrl400:'ThanhLong400.jpg',
     rating:4.2, // <=5
@@ -224,38 +224,40 @@ const ThanhLong ={
 const Xoai ={
     id:15,
     productName:'Xoài',
-    price:21900000,
+    price:100000,
     imageUrl150:'Xoai150.jpg',
     imageUrl400:'Xoai400.jpg',
     rating:3.8, // <=5
     nameShop:'HoaQuaShop',
-    description:'',
+    description:'Xoài cát Hòa Lộc là loại quả đặc sản nổi tiếng của vùng đồng bằng sông Cửu Long. Quả xoài có trọng lượng trung bình từ 350-450 g, hình dạng thuôn dài, khi chín vỏ có màu vàng nhạt, thịt quả màu vàng tươi, cấu trúc thịt chắc, mịn và ít xơ, vị ngon và thơm.',
     sold:8,
     quantity:5,
     category:'MuaDong'
 
 }
+//16
+const Dao ={
+    id:16,
+    productName:'Đào',
+    price:150000,
+    imageUrl150:'dao150.jpg',
+    imageUrl400:'dao400.jpg',
+    rating:4.8, // <=5
+    nameShop:'HoaQuaShop',
+    description:'',
+    quantity:11,
+    category:'MuaDong'
 
-
+}
 
 
 const User1 ={
-    name:'Trần Thành Nam',
+    name:'Nguyễn Hồng Nhiên',
     genrder:true,
-    dateOfBirth:'25/10/2002',
-    phoneNumber:'0399194932',
-    email:'namsenpai2510@gmail.com',
-    address:'',
-    role:'user', //user
-}
-
-const User2 ={
-    name:'Nguyễn Hoàng Hiếu',
-    genrder:true,
-    dateOfBirth:'15/1/1992',
-    phoneNumber:'034514932',
-    email:'hieunho52@gmail.com',
-    address:'92/2 khu phố b, chiêu liêu, Dĩ An, Bình Dương',
+    dateOfBirth:'2/5/2002',
+    phoneNumber:'0941901706',
+    email:'nguyenhongnhien020502@gmail.com',
+    address:'TDM, Bình Dương',
     role:'user', //user
 }
 
@@ -301,6 +303,9 @@ const producData=[
     },
     {
         ...Xoai,
+    },
+    {
+        ...Dao,
     },
 
     

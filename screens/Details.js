@@ -121,7 +121,7 @@ function Details({ route }) {
         >
           <Icon name="arrow-left" size={30} color="#fff" />
         </TouchableOpacity>
-
+        <Text style={{fontSize:20,fontWeight:'bold',color:'#fff'}}>Chi tiết sản phẩm</Text>
         <View style={styles.cartAndMore}>
           <View style={styles.cartIconContainer}>
             {isCart && (
@@ -135,14 +135,7 @@ function Details({ route }) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={styles.moreIcon}
-            onPress={() => {
-              
-            }}
-          >
-            <Icon name="unfold-more-vertical" size={30} color="#fff" />
-          </TouchableOpacity>
+          
         </View>
       </View>
 
@@ -151,17 +144,7 @@ function Details({ route }) {
 
         <Text style={{ color: 'red', fontSize: 25 }}>{numberWithCommas(product.price)}/1kg</Text>
         <Text style={styles.name}>{product.productName}</Text>
-        <View style={styles.wrap}>
-
-          {/* rating */}
-          <StarRatingDisplay
-            style={styles.starRating}
-            rating={product.rating}
-            starSize={25}
-          />
-          <Text>Đã bán : {product.sold}</Text>
-          
-        </View>
+       
         <View style={{marginTop:20}}>
             <Text style={{fontSize:18,color:'#000'}}>Mô tả sản phẩm</Text>
             <Text style={{fontSize:16, marginTop:5}}>{product.description}</Text>
@@ -195,7 +178,6 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'relative',
     left: 20,
-    backgroundColor: 'rgba(211,211,211,0.3)',
     borderRadius: 30,
     padding: 5,
   },
@@ -212,7 +194,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(211,211,211,0.5)',
     borderRadius: 30,
     padding: 5,
     marginRight: 10,
@@ -229,16 +210,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
     zIndex: 1,
   },
-  moreIcon: {
-    position: 'relative',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(211,211,211,0.5)',
-    borderRadius: 30,
-    padding: 5,
-    marginRight: 10,
-  },
+  
   wrapAll: {
     marginLeft: 10,
     marginRight: 10,
@@ -248,12 +220,8 @@ const styles = StyleSheet.create({
     height: 400,
     width: 400,
   },
-  starRating: {},
-  wrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+
+
   name: {
     fontSize: 20,
     color: '#000000',

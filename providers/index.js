@@ -25,7 +25,7 @@ function MyContextControllerProvider({ children }) {
   const value = useMemo(() => [controller, dispatch], [controller, dispatch]);
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 }
-//React custom hook for using context
+
 function useMyContextController() {
   const context = useContext(MyContext);
   if (!context) {

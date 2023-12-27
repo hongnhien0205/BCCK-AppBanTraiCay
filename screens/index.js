@@ -7,7 +7,8 @@ import Signup from "./Signup";
 import Setting from "./Setting";
 import Search from "./Search";
 import Categories from "./Categories";
-import SendPass from "./SendPass";
+import ForgetPass from "./ForgetPass";
+import SearchResult from "./SearchResult";
 export {
     Login,
     Signup,
@@ -18,6 +19,7 @@ export {
     Setting,
     Search,
     Categories,
-    SendPass
+    ForgetPass,
+    SearchResult
 
 }

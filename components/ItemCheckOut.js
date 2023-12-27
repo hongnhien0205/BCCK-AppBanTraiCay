@@ -1,6 +1,6 @@
 import React from "react";
 import {View, StyleSheet,Image,Text, TouchableOpacity} from 'react-native'
-function ItemCheckOut({name,price,cate,quantity,srcImg}) {
+function ItemCheckOut({name,price,quantity,srcImg}) {
     const numberWithCommas = (number) => {
         return number.toLocaleString('vi-VN'); // 'vi-VN' là mã ngôn ngữ của Tiếng Việt
     };
@@ -12,11 +12,8 @@ function ItemCheckOut({name,price,cate,quantity,srcImg}) {
                     <Image source={{uri:srcImg}} style={styles.img}/>
                     <View style={{flex:1}}>
                         <Text style={styles.txt}>{name}</Text>
-                        <Text style={styles.txt2}>Phân loại: {cate}</Text>
-                        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-                            <Text style={styles.txt3}>{numberWithCommas(price)}VND</Text>
-                            <Text style={styles.txt2}>x{quantity}kg</Text>
-                        </View>
+                        <Text style={styles.txt3}>{numberWithCommas(price)}VND</Text>
+                        <Text style={styles.txt2}>Số kilogram: {quantity}kg</Text>
                     </View>
                 </View>
                 
@@ -32,12 +29,13 @@ const styles = StyleSheet.create({
         marginBottom:20
     },
     txt:{
-        fontSize:16,
+        fontSize:18,
+        fontWeight:'bold',
         color:'#000',
         marginBottom:10
     },
     txt2:{
-        fontSize:14,
+        fontSize:16,
         marginBottom:10
     },
     txt3:{

@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, ScrollView, Text, TouchableOpacity,FlatList } from "react-native";
-import { Checkbox } from "react-native-paper";
+import { View, StyleSheet, Text, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { ItemCart } from "../components";
+import { primaryColor } from "../assets/color";
 
 function Cart() {
   const navigation = useNavigation();
-  const [checkedAll, setCheckedAll] = useState(false);
-  const [checkedItems, setCheckedItems] = useState([]);
   const [cartData, setCartData] = useState([]);
 
- 
-  const numberWithCommas = (number) => {
-    return number.toLocaleString("vi-VN"); 
-  };
-  const user = auth().currentUser;
-  const userID = user.uid
-
- 
   const loadCartData = async () => {
     const user = auth().currentUser;
     if (user) {
       const userId = user.uid;
       const cartRef = firestore().collection("carts").doc(userId);
-  
+
       try {
         const cartSnapshot = await cartRef.get();
         if (cartSnapshot.exists) {
@@ -43,30 +33,20 @@ function Cart() {
       }
     }
   };
-  
+
   useEffect(() => {
     loadCartData();
   }, []);
-  
-  // Hàm check hết
-  const toggleCheckItem = (index) => {
-    const updatedCheckedItems = [...checkedItems];
-    updatedCheckedItems[index] = !updatedCheckedItems[index];
-    setCheckedItems(updatedCheckedItems);
-    setCheckedAll(updatedCheckedItems.every((item) => item));
+
+  const calculateTotalAmount = () => {
+    // Tính tổng tiền từ các sản phẩm trong giỏ hàng
+    const totalAmount = cartData.reduce((total, product) => {
+      return total + product.price;
+    }, 0);
+
+    return totalAmount;
   };
 
-  // Hàm check tất cả
-  const toggleCheckAll = () => {
-    const updatedCheckedItems = cartData.map((_, index) => !checkedAll);
-    setCheckedItems(updatedCheckedItems);
-    setCheckedAll(!checkedAll);
-  };
-
-  const totalAmount = checkedItems.reduce((total, isChecked, index) => {
-    return total + (isChecked ? cartData[index]?.price || 0 : 0);
-  }, 0);
-  
   // xoa sp khoi gio hang
   const removeItem = async (productId) => {
     const user = auth().currentUser;
@@ -94,26 +74,26 @@ function Cart() {
       }
     }
   };
+
   // cap nhat gio han
   const updateCartItem = async (productId, newQuantity, newPrice) => {
     const user = auth().currentUser;
-  
+
     if (user) {
       const userId = user.uid;
       const cartRef = firestore().collection("carts").doc(userId);
-  
+
       try {
-        
         const cartSnapshot = await cartRef.get();
-  
+
         if (cartSnapshot.exists) {
           const currentCartData = cartSnapshot.data();
-          
+
           if (currentCartData[productId]) {
             currentCartData[productId].quantity = newQuantity;
             currentCartData[productId].price = newPrice;
           }
-  
+
           await cartRef.set(currentCartData);
 
           loadCartData();
@@ -123,57 +103,50 @@ function Cart() {
       }
     }
   };
-  
+
   return (
     <View style={{ flex: 1, backgroundColor: "rgba(211,211,211,0.2)" }}>
-      {}
-      <FlatList
-  data={cartData}
-  keyExtractor={(item) => item.id.toString()}
-  renderItem={({ item, index }) => (
-    <ItemCart
-      key={index}
-      productId={item.id}
-      namePro={item.name}
-      nameShop={item.shop}
-      category={item.category}
-      price={item.price}
-      proquantity={item.quantity}
-      srcImg={item.img}
-      isChecked={checkedItems[index]}
-      onRemove={() => removeItem(item.id)}
-      updateCartItem={updateCartItem}
-      onToggleCheck={() => toggleCheckItem(index)}
-    />
-  )}
-/>
-      <View style={styles.wrapCheckOut}>
-        <View style={styles.wraptxt}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Checkbox
-              status={checkedAll ? "checked" : "unchecked"}
-              onPress={() => {
-                toggleCheckAll();
+      {cartData.length > 0 ? (
+        <>
+          <FlatList
+            data={cartData}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item, index }) => (
+              <ItemCart
+                key={index}
+                productId={item.id}
+                namePro={item.name}
+                nameShop={item.shop}
+                category={item.category}
+                price={item.price}
+                proquantity={item.quantity}
+                srcImg={item.img}
+                onRemove={() => removeItem(item.id)}
+                updateCartItem={updateCartItem}
+              />
+            )}
+          />
+          <View style={styles.wrapCheckOut}>
+           
+            <TouchableOpacity
+              style={{
+                flex: 1,
+                backgroundColor: primaryColor,
+                marginLeft: 10,
+                marginRight: 10,
+                padding: 10,
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
-            <Text style={{ fontSize: 16 }}>Chọn tất cả</Text>
+              onPress={() => navigation.navigate("CheckOut", { cartData })}
+            >
+              <Text style={{ fontSize: 20, color: "#fff" }}>Thanh toán</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={{ fontSize: 16 }}>
-            Tổng tiền:
-            <Text style={{ color: "red", fontSize: 16 }}>
-              đ{numberWithCommas(totalAmount)}
-            </Text>
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={styles.wrapBtn}
-          onPress={() => {
-            navigation.navigate("CheckOut",{ cartData, checkedItems, totalAmount });
-          }}
-        >
-          <Text style={{ color: "#fff", fontSize: 16 }}>Mua hàng</Text>
-        </TouchableOpacity>
-      </View>
+        </>
+      ) : (
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}><Text style={{textAlign:'center',fontSize:20}}>Chưa có sản phẩm trong giỏ</Text></View>
+      )}
     </View>
   );
 }
@@ -200,6 +173,7 @@ const styles = StyleSheet.create({
   wrapCheckOut: {
     flexDirection: "row",
     backgroundColor: "#fff",
+    marginBottom: 10,
   },
 });
 

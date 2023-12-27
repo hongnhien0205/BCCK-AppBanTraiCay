@@ -1,7 +1,7 @@
 import React from "react";
 import {View , StyleSheet, Image, Text,TouchableOpacity} from 'react-native'
 
-function ProductComp({srcImg, name, sold, price, onClick}) {
+function ProductComp({srcImg, name, price, onClick}) {
   
     return ( 
             <TouchableOpacity style={styles.container} onPress={onClick}>
@@ -10,7 +10,6 @@ function ProductComp({srcImg, name, sold, price, onClick}) {
                         <Text style={styles.txtName}>{name}</Text>
                       <View style={styles.wrap}>
                             <Text style={styles.txtPrice}>{price}/1kg</Text>
-                            <Text style={styles.txtSold}>Đã bán: {sold}</Text>
                       </View>
                     </View>
             </TouchableOpacity>

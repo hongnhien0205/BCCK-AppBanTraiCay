@@ -21,7 +21,7 @@ function Home() {
   const numberWithCommas = (number) => {
     return number.toLocaleString('vi-VN');
   };
-
+// 
   useEffect(() => {
     const fetchCategories = async () => {
       try {

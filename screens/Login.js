@@ -64,7 +64,7 @@ function Login() {
                 />
                 {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
 
-                <TouchableOpacity onPress={()=>{navigation.navigate('SendPass')}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('ForgetPass')}}>
                     <Text 
                     style={styles.txtLink}
                     >Quên mật khẩu?</Text>
@@ -78,7 +78,7 @@ function Login() {
     
                 <View style={{alignItems:'center',flexDirection:'row',justifyContent:'center'}}>
                     <Text style={styles.txt}>
-                        Chưa có tài khoản? 
+                        Bạn chưa có tài khoản? 
                         
                     </Text>
                         <Button  onPress={()=>{Alert.alert('click')}}>
